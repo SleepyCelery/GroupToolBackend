@@ -1,0 +1,91 @@
+
+###
+
+GET http://127.0.0.1:8000/latest_groups
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/group_result
+Content-Type: application/json
+
+{
+  "group_name": "测试分组",
+  "is_public": true,
+  "source_elements": ["元素1", "元素2", "元素3"],
+  "group_mode": "equal",
+  "group_count": 2
+}
+
+###
+
+GET http://127.0.0.1:8000/group_result?group_id=1
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/group_result?group_id=2&password=123456
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/hot_elements
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/data_sources
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/search_groups?query=1
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/search_groups?query=测试
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/group_result
+Content-Type: application/json
+
+{
+  "group_name": "LOL英雄分组",
+  "is_public": true,
+  "data_source": ["英雄联盟英雄数据"],
+  "group_mode": "equal",
+  "group_count": 3
+}
+
+###
+
+POST http://127.0.0.1:8000/group_result
+Content-Type: application/json
+
+{
+  "group_name": "按量分组测试",
+  "is_public": true,
+  "source_elements": ["元素1", "元素2", "元素3", "元素4", "元素5"],
+  "group_mode": "size",
+  "group_size": 2,
+  "group_count": 3
+}
+
+###
+
+POST http://127.0.0.1:8000/group_result
+Content-Type: application/json
+
+{
+  "group_name": "私有分组测试",
+  "is_public": false,
+  "private_password": "123456",
+  "source_elements": ["元素1", "元素2", "元素3"],
+  "group_mode": "equal",
+  "group_count": 2
+}
+
+###
