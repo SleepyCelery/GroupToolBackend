@@ -55,6 +55,14 @@ def create_group(group: CreateGroupRequest):
     创建一个新分组
     """
     try:
+        # 验证数据源是否存在
+        if group.data_source:
+            all_sources = get_all_sources()
+            for source in group.data_source:
+                if source not in all_sources:
+                    return GeneralResponse(
+                        success=False, message=f"Data source '{source}' is not exist", data=None
+                    )
         with Session(engine) as session:
             group_name = group.group_name
             group_mode = group.group_mode
