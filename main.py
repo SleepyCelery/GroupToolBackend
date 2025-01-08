@@ -40,12 +40,16 @@ def get_latest_groups():
             return GeneralResponse(
                 success=True,
                 message="Latest groups fetched successfully",
+                message_zh_CN="成功获取最新分组",
                 data=GetLatestGroupsResponse(groups=data),
             )
     except Exception as e:
         logger.error(f"Error fetching latest groups: {e}")
         return GeneralResponse(
-            success=False, message="Failed to fetch latest groups", data=None
+            success=False,
+            message="Failed to fetch latest groups",
+            message_zh_CN="获取最新分组失败",
+            data=None,
         )
 
 
@@ -61,7 +65,10 @@ def create_group(group: CreateGroupRequest):
             for source in group.data_source:
                 if source not in all_sources:
                     return GeneralResponse(
-                        success=False, message=f"Data source '{source}' is not exist", data=None
+                        success=False,
+                        message=f"Data source '{source}' is not exist",
+                        message_zh_CN=f"数据源 '{source}' 不存在",
+                        data=None,
                     )
         with Session(engine) as session:
             group_name = group.group_name
@@ -118,6 +125,7 @@ def create_group(group: CreateGroupRequest):
             return GeneralResponse(
                 success=True,
                 message="Group created successfully",
+                message_zh_CN="分组创建成功",
                 data=GroupResultResponse(
                     id=group_result_row.id,
                     group_name=group_name,
@@ -134,7 +142,10 @@ def create_group(group: CreateGroupRequest):
     except Exception as e:
         logger.error(f"Error creating group: {e}")
         return GeneralResponse(
-            success=False, message="Failed to create group", data=None
+            success=False,
+            message="Failed to create group",
+            message_zh_CN="分组创建失败",
+            data=None,
         )
 
 
@@ -158,6 +169,7 @@ def get_group_result(group_id: int, password: Optional[str] = None):
                 return GeneralResponse(
                     success=True,
                     message="Result fetched successfully",
+                    message_zh_CN="成功获取分组结果",
                     data=group_result.model_dump(exclude={"private_password"}),
                 )
             else:
@@ -165,18 +177,21 @@ def get_group_result(group_id: int, password: Optional[str] = None):
                     return GeneralResponse(
                         success=True,
                         message="Result fetched successfully",
+                        message_zh_CN="成功获取分组结果",
                         data=group_result.model_dump(exclude={"private_password"}),
                     )
                 else:
                     return GeneralResponse(
                         success=False,
                         message="Invalid password",
+                        message_zh_CN="密码错误",
                         data=None,
                     )
         else:
             return GeneralResponse(
                 success=False,
                 message="Result not found",
+                message_zh_CN="未找到分组结果",
                 data=None,
             )
 
@@ -190,12 +205,16 @@ def get_hot_elements():
         return GeneralResponse(
             success=True,
             message="Hot elements fetched successfully",
+            message_zh_CN="成功获取热门元素",
             data=Element.to_str(hot_element_cache.get_hot_elements()),
         )
     except Exception as e:
         logger.error(f"Error fetching hot elements: {e}")
         return GeneralResponse(
-            success=False, message="Failed to fetch hot elements", data=None
+            success=False,
+            message="Failed to fetch hot elements",
+            message_zh_CN="获取热门元素失败",
+            data=None,
         )
 
 
@@ -207,6 +226,7 @@ def get_data_sources():
     return GeneralResponse(
         success=True,
         message="Data sources fetched successfully",
+        message_zh_CN="成功获取数据源",
         data=list(get_all_sources().keys()),
     )
 
@@ -246,12 +266,16 @@ def search_groups(query: str):
             return GeneralResponse(
                 success=True,
                 message="Search completed successfully",
+                message_zh_CN="搜索完成",
                 data=GetLatestGroupsResponse(groups=data),
             )
     except Exception as e:
         logger.error(f"Error searching groups: {e}")
         return GeneralResponse(
-            success=False, message="Failed to search groups", data=None
+            success=False,
+            message="Failed to search groups",
+            message_zh_CN="搜索分组失败",
+            data=None,
         )
 
 

@@ -145,6 +145,7 @@ class GeneralResponse(SQLModel, table=False):
 
     success: bool
     message: str
+    message_zh_CN: str
     data: Any
 
 
