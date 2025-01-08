@@ -104,10 +104,12 @@ def create_group(group: CreateGroupRequest):
             group_result_row = GroupResult(
                 group_name=group_name,
                 group_mode=group_mode,
+                group_size=group_size,
                 is_public=is_public,
                 private_password=private_password,
                 source_elements=source_elements,
                 group_count=group_count,
+                data_source=data_source,
                 group_result=Element.to_str(result),
             )
             session.add(group_result_row)
