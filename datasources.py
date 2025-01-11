@@ -52,7 +52,7 @@ class LolHeroSource(ElementSource):
             return heroes
 
         except requests.RequestException as e:
-            logger.error(f"获取英雄数据失败: {e}")
+            logger.error(f"Get elements from {cls.display_name} failed: {e}")
             return []
 
 
@@ -70,5 +70,5 @@ def get_elements_from_source(display_name: str):
     if source:
         return source.get_elements()
     else:
-        logger.error(f"未找到数据源: {display_name}")
+        logger.error(f"No data source found: {display_name}")
         return []

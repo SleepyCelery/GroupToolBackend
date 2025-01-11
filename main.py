@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 from models import *
 from sqlmodel import Session, select
@@ -16,6 +17,15 @@ DEBUG = os.getenv("DEBUG", "False")
 hot_element_cache = HotElementsCache(max_size=10)
 
 app = FastAPI()
+
+# 添加CORS中间件
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 允许所有域名
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许所有HTTP方法
+    allow_headers=["*"],  # 允许所有HTTP头
+)
 
 
 @app.get("/latest_groups", response_model=GeneralResponse)
