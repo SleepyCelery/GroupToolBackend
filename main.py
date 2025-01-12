@@ -188,7 +188,7 @@ def get_group_result(group_id: int, password: Optional[str] = None):
                         success=True,
                         message="Result fetched successfully",
                         message_zh_CN="成功获取分组结果",
-                        data=group_result.model_dump(exclude={"private_password"}),
+                        data=group_result.model_dump(),
                     )
                 else:
                     return GeneralResponse(
