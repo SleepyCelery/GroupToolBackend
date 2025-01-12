@@ -11,7 +11,6 @@ from datasources import (
 )
 import os
 
-SERVER_URL = os.getenv("SERVER_URL", "http://localhost:8080")
 DEBUG = os.getenv("DEBUG", "False")
 
 hot_element_cache = HotElementsCache(max_size=10)
@@ -145,8 +144,7 @@ def create_group(group: CreateGroupRequest):
                     data_source=data_source,
                     group_count=group_count,
                     group_result=Element.to_str(result),
-                    created_at=group_result_row.created_at,
-                    share_url=f"{SERVER_URL}/group_result?group_id={group_result_row.id}&password={private_password}",
+                    created_at=group_result_row.created_at
                 ),
             )
     except Exception as e:

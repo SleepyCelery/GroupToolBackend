@@ -53,10 +53,6 @@
    - 本地访问：http://localhost:[port]
    - 服务器访问：http://<服务器IP>:[port]
 
-### 环境变量配置
-- `DEBUG`：调试模式（默认 False）
-- `SERVER_URL`：服务器地址，如果部署了反向代理，请填写反向代理地址（默认 http://localhost:8080）
-
 ### 注意事项
 - 首次运行会初始化SQLite数据库
 - 生产环境建议配置 HTTPS

@@ -102,7 +102,6 @@ class GroupResultResponse(SQLModel, table=False):
     group_count: int
     group_result: List[List[str]]
     created_at: datetime
-    share_url: str
 
 class BriefGroupResultResponse(SQLModel, table=False):
     """
