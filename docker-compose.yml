@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  grouptool:
+    image: chaoyihu/grouptool:master
+    container_name: grouptool
+    # 根据需求修改外部端口号
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEBUG=False
+      # 如果使用反向代理，请填写反向代理地址
+      - SERVER_URL=http://localhost:8080
+    restart: unless-stopped

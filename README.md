@@ -22,3 +22,41 @@
 - **公开分组**：所有用户可见
 - **私有分组**：使用密码保护，仅密码持有者可查看结果
 - **分组结果分享**：允许用户生成分组结果展示链接进行结果分享
+
+## 部署说明
+### Docker Compose 部署（基于已有镜像）
+1. 确保已安装 Docker Compose
+2. 克隆项目到本地
+3. 修改项目根目录下的 `docker-compose.yml` 文件中的 `ports` 和 `environment` 配置，确保端口和环境变量正确
+4. 运行容器：
+   ```bash
+   docker compose up -d
+   ```
+5. 访问应用：
+   - 本地访问：http://localhost:[port]
+   - 服务器访问：http://<服务器IP>:[port]
+
+### Docker 部署（本地构建）
+
+1. 确保已安装 Docker
+2. 克隆项目到本地
+3. 在项目根目录下创建 `.env` 文件，配置环境变量（可选）
+4. 构建 Docker 镜像：
+   ```bash
+   docker build -t group-tool .
+   ```
+5. 运行容器：
+   ```bash
+   docker run -d -p [port]:8080 --name group-tool group-tool
+   ```
+6. 访问应用：
+   - 本地访问：http://localhost:[port]
+   - 服务器访问：http://<服务器IP>:[port]
+
+### 环境变量配置
+- `DEBUG`：调试模式（默认 False）
+- `SERVER_URL`：服务器地址，如果部署了反向代理，请填写反向代理地址（默认 http://localhost:8080）
+
+### 注意事项
+- 首次运行会初始化SQLite数据库
+- 生产环境建议配置 HTTPS
