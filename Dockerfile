@@ -17,6 +17,7 @@ EXPOSE 8080
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1
 ENV DEBUG=False
+ENV SERVER_URL=http://localhost:8080
 
 # 运行数据库初始化（如果需要）
 # RUN python -c "from models import SQLModel; SQLModel.metadata.create_all(engine)"
