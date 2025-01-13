@@ -68,6 +68,15 @@ def create_group(group: CreateGroupRequest):
     创建一个新分组
     """
     try:
+        # 校验分组名称长度
+        if len(group.group_name) > 20:
+            return GeneralResponse(
+                success=False,
+                message="Group name exceeds 20 characters limit",
+                message_zh_CN="分组名称超过20字限制",
+                data=None,
+            )
+
         # 验证数据源是否存在
         if group.data_source:
             all_sources = get_all_sources()
@@ -144,7 +153,7 @@ def create_group(group: CreateGroupRequest):
                     data_source=data_source,
                     group_count=group_count,
                     group_result=Element.to_str(result),
-                    created_at=group_result_row.created_at
+                    created_at=group_result_row.created_at,
                 ),
             )
     except Exception as e:
